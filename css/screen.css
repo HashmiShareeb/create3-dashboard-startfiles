@@ -8,12 +8,28 @@
 
 :root {
     /* colors */    
+    --color-main-dark: #3B3B53;
+    --color-main-light: #43425D;
+    --color-main-lighter: #F0F0F7;
+    --color-light: #FFFFFF;
+    --color-main-hover:#A3A0FB;
+    --color-nav-icon: #A5A4BF;
 
     /* Shadows */
+    --shadow: 0 0 10px 0 #CACED5(0, 0, 0, 0.2);
 
     /* border radius */
 
     /* whitespace */
+    --global-baseline:5px;
+    --global-whitessapce-xxs:var(--global-baseline);  /* 5px */
+    --global-whitessapce-xs:calc(var(--global-baseline) * 2);  /* 10px */
+    --global-whitessapce-sm:calc(var(--global-baseline) * 3);  /* 15px */
+    --global-whitessapce-md:calc(var(--global-baseline) * 4);  /* 20px */
+    --global-whitessapce-lg:calc(var(--global-baseline) * 5);  /* 25px */
+    --global-whitessapce-xl:calc(var(--global-baseline) * 6);  /* 30px */
+    --global-whitessapce-xxl:calc(var(--global-baseline) * 7);  /* 35px */
+  
 
     /* transitions */
 }
@@ -31,11 +47,11 @@
 html {
     font-size: 16px;
     line-height: 1.5;
-    font-family: Helvetica, arial, sans-serif;
+    font-family: "Source Sans Pro",sans-serif;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: white;
+    background-color: var(--color-main-lighter);
 }
 
 *,
@@ -86,20 +102,21 @@ h3 {
 
 h1 {
     font-size: 36px;
-    line-height: 48px;
-    margin: 0 0 24px;
+    line-height: calc(var(--global-baseline) * 10);
+    margin: 0 0 var(--global-whitessapce-md);
 }
 
 h2 {
     font-size: 32px;
-    line-height: 40px;
-    margin: 0 0 24px;
+    font-weight: normal;
+    line-height:calc(var(--global-baseline) * 8);
+    margin: 0 0 var(--global-whitessapce-lg);
 }
 
 h3 {
     font-size: 26px;
-    line-height: 32px;
-    margin: 0 0 24px;
+    line-height: calc(var(--global-baseline)*6);
+    margin: 0 0 var(--global-whitessapce-md);
 }
 
 h4,
@@ -107,8 +124,8 @@ h5,
 h6 {
     font-size: 16px;
     font-weight: 600;
-    line-height: 24px;
-    margin: 0 0 24px;
+    line-height: calc(var(--global-baseline)*6);
+    margin: 0 0 var(--global-whitessapce-md);
 }
 
 p,
@@ -118,12 +135,12 @@ dl,
 table,
 address,
 figure {
-    margin: 0 0 24px;
+    margin: 0 0 var(--global-whitessapce-md);
 }
 
 ul,
 ol {
-    padding-left: 24px;
+    padding-left: var(--global-whitessapce-md);
 }
 
 li ul,
@@ -135,7 +152,7 @@ blockquote {
     font-style: normal;
     font-size: 23px;
     line-height: 32px;
-    margin: 0 0 24px;
+    margin: 0 0 var(--global-whitessapce-md);
 }
 
 blockquote * {
@@ -154,7 +171,7 @@ hr {
     border: 0;
     height: 1px;
     background: LightGrey;
-    margin: 0 0 24px;
+    margin: 0 0 var(--global-whitessapce-md);
 }
 
 a {
@@ -277,8 +294,103 @@ select {
     Component: Logo
     ---
     Website main logo
-*/
 
+*/
+.c-main-nav{
+    /* margin-bottom: var(--global-baseline); */
+    width: 100%;
+}
+.c-main-nav ul,li,a{
+    text-decoration: none;
+    list-style-type: none;
+    color: var(--color-light) !important;
+    padding: 0;
+}
+
+.c-main-nav li{
+    padding: calc(var(--global-baseline)*2);
+    margin-top: var(--global-baseline);
+    padding: var(--global-whitessapce-md);
+    transition:all 1s ease-in, .2s ease-in;
+    
+}
+.c-main-nav__list:hover{
+    background-color: var(--color-main-dark);
+    border-left: 5px solid var(--color-main-hover);
+    /* 1s
+    .2s */
+
+
+}
+.c-main-nav__list--active{
+    background-color: var(--color-main-dark);
+    border-left: 5px solid var(--color-main-hover);
+    /* 1s
+    .2s */
+
+
+}
+.c-main-nav__icon{
+    fill:var(--color-nav-icon);
+    width: 16px;
+    height: 16px;
+}
+.c-main-nav__link{
+    display: flex;
+    align-items: center;
+    gap: calc(var(--global-baseline)*2);
+}
+   
+
+
+
+
+.c-main-nav__item{
+    /* var(--global-baseline) 0; */
+}
+
+.c-app{
+    /* Pas CSS-grid toe op c-app vanaf een gepast breakpoint */
+    min-height: 100vh;
+    display: grid;
+    /* Zorg er voor dat het logo en de sidebar een breedte hebben van 260px
+    Zorg er voor dat de sidebar en main de resterende hoogte innemen. */
+    grid-template-columns: 260px 1fr;
+    grid-template-rows: auto 1fr;
+    /* grid-template-columns: "logo" "top";
+    grid-template-rows: "sidebar" "main"
+    "main"; */
+    /* grid-template-areas:
+        "logo top"
+        "sidebar main"; (alternatief)*/
+}
+.c-app__logo{
+    background-color: var(--color-main-dark);
+    padding:var(--global-whitessapce-lg);
+    
+}
+.c-app__logo h1{
+    background-color: var(--color-main-dark);
+    color: var(--color-light);
+    font-size: 15px;
+    line-height: 21px;
+    /* padding:var(--global-whitessapce-md) 0 0 var(--global-whitessapce-md);
+     */
+    margin: 0 0 0 var(--global-whitessapce);
+   
+
+   
+}
+.c-app__topbar{
+    background-color: var(--color-light);
+
+}
+.c-app__sidebar{
+    background-color: var(--color-main-light);
+}
+.c-app__main{
+   
+}
 /*------------------------------------*\
 #UTILITIES
 \*------------------------------------*/
